@@ -1,4 +1,10 @@
-import { Directive, effect, input, inject } from '@angular/core';
+import { 
+  Directive, 
+  effect, 
+  input, 
+  inject, 
+  TemplateRef,
+  ViewContainerRef } from '@angular/core';
 
 import type { Permission } from './auth.model';
 import { AuthService } from './auth.service';
@@ -9,7 +15,9 @@ import { AuthService } from './auth.service';
 })
 export class AuthDirective {
   userType = input.required<Permission>({ alias: 'appAuth' });
-  private authService = inject(AuthService)
+  private authService = inject(AuthService);
+  private templateRef = inject(TemplateRef);
+  private viewContainerRef = inject(ViewContainerRef);
 
   constructor() {
     effect(() => {
